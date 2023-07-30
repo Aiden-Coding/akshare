@@ -154,7 +154,7 @@ def stock_info_sh_name_code(symbol: str = "主板A股") -> pd.DataFrame:
     col_stock_code = "B_STOCK_CODE" if symbol == "主板B股" else "A_STOCK_CODE"
     temp_df.rename(columns={
         col_stock_code: "证券代码",
-        "COMPANY_ABBR": "证券简称",
+        "SEC_NAME_CN": "证券简称",
         "FULL_NAME": "公司全称",
         "LIST_DATE": "上市日期",
     }, inplace=True)

@@ -8,7 +8,7 @@ import akshare
 stockApi = Blueprint("stockApi", url_prefix="/stock")
 
 
-@stockApi.route("/")
+@stockApi.route("/stock_info_a_code_name")
 async def bp_root(request):
     """
        沪深京 A 股列表
@@ -17,4 +17,4 @@ async def bp_root(request):
     """
     pd = akshare.stock_info_a_code_name()
     ret = pd.to_json(orient='records')
-    return response.json({"my": json.loads(ret)})
+    return response.json({"code": "0000", "data": json.loads(ret)})

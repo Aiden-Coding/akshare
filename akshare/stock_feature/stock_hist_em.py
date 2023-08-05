@@ -1034,29 +1034,29 @@ def stock_zh_a_hist(
         return pd.DataFrame()
     temp_df = pd.DataFrame([item.split(",") for item in data_json["data"]["klines"]])
     temp_df.columns = [
-        "日期",
-        "开盘",
-        "收盘",
-        "最高",
-        "最低",
-        "成交量",
-        "成交额",
-        "振幅",
-        "涨跌幅",
-        "涨跌额",
-        "换手率",
+        "timestamp",  # 日期
+        "open",  # 开盘
+        "close",  # 收盘
+        "high",  # 最高
+        "low",  # 最低
+        "bargainamount",  # 成交量
+        "turnover",  # 成交额
+        "amplitude",  # 振幅
+        "markup",  # 涨跌幅
+        "markup_amount",  # 涨跌额
+        "turnoverrate",  # 换手率
     ]
-    temp_df["日期"] = pd.to_datetime(temp_df["日期"]).dt.date
-    temp_df["开盘"] = pd.to_numeric(temp_df["开盘"], errors="coerce")
-    temp_df["收盘"] = pd.to_numeric(temp_df["收盘"], errors="coerce")
-    temp_df["最高"] = pd.to_numeric(temp_df["最高"], errors="coerce")
-    temp_df["最低"] = pd.to_numeric(temp_df["最低"], errors="coerce")
-    temp_df["成交量"] = pd.to_numeric(temp_df["成交量"], errors="coerce")
-    temp_df["成交额"] = pd.to_numeric(temp_df["成交额"], errors="coerce")
-    temp_df["振幅"] = pd.to_numeric(temp_df["振幅"], errors="coerce")
-    temp_df["涨跌幅"] = pd.to_numeric(temp_df["涨跌幅"], errors="coerce")
-    temp_df["涨跌额"] = pd.to_numeric(temp_df["涨跌额"], errors="coerce")
-    temp_df["换手率"] = pd.to_numeric(temp_df["换手率"], errors="coerce")
+    temp_df["timestamp"] = pd.to_datetime(temp_df["timestamp"]).dt.date
+    temp_df["open"] = pd.to_numeric(temp_df["open"], errors="coerce")
+    temp_df["close"] = pd.to_numeric(temp_df["close"], errors="coerce")
+    temp_df["high"] = pd.to_numeric(temp_df["high"], errors="coerce")
+    temp_df["low"] = pd.to_numeric(temp_df["low"], errors="coerce")
+    temp_df["bargainamount"] = pd.to_numeric(temp_df["bargainamount"], errors="coerce")
+    temp_df["turnover"] = pd.to_numeric(temp_df["turnover"], errors="coerce")
+    temp_df["amplitude"] = pd.to_numeric(temp_df["amplitude"], errors="coerce")
+    temp_df["markup"] = pd.to_numeric(temp_df["markup"], errors="coerce")
+    temp_df["markup_amount"] = pd.to_numeric(temp_df["markup_amount"], errors="coerce")
+    temp_df["turnoverrate"] = pd.to_numeric(temp_df["turnoverrate"], errors="coerce")
     return temp_df
 
 

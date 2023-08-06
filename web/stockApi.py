@@ -1,3 +1,5 @@
+
+from datetime import datetime
 import json
 
 from sanic import Blueprint
@@ -40,6 +42,19 @@ async def stock_zh_a_hist(request, ticker, multiplier, timespan, from_time, to):
     :return: 每日行情
     :rtype: pandas.DataFrame
     """
+    if timespan == 'day':
+        # '1644289200000'
+        from_time = datetime.fromtimestamp(int(from_time) / 1000).strftime('%Y%m%d')
+        to = datetime.fromtimestamp(int(to) / 1000).strftime('%Y%m%d')
+        timespan = 'daily'
+    elif timespan == 'week':
+        timespan = 'weekly'
+        from_time = datetime.fromtimestamp(int(from_time) / 1000).strftime('%Y%m%d')
+        to = datetime.fromtimestamp(int(to) / 1000).strftime('%Y%m%d')
+    elif timespan == 'month':
+        timespan = 'monthly'
+        from_time = datetime.fromtimestamp(int(from_time) / 1000).strftime('%Y%m%d')
+        to = datetime.fromtimestamp(int(to) / 1000).strftime('%Y%m%d')
     pd = akshare.stock_zh_a_hist(ticker, timespan, from_time, to)
     ret = pd.to_json(orient='records')
     return response.json({"code": "0000", "data": json.loads(ret)})
